@@ -15,7 +15,7 @@ It consists of 3 MG996R servo motors for the 3-axis control, and a base on which
 - [MPU6050](https://amzn.to/2TXgrze) 
 
 ### Circuit Diagram
-![](https://github.com/aamit2267/Gimbal-w-Arduino/blob/main/arduino.png) 
+![](https://github.com/aamit2267/Gimbal-w-Arduino/blob/main/circuit.png) 
 
 ### Demo Video
 [![DEMO](https://yt-embed.herokuapp.com/embed?v=w1LTCHEpGig)](https://www.youtube.com/watch?v=w1LTCHEpGig "Demo")
