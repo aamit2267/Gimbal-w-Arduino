@@ -1,3 +1,7 @@
+// Copyright © 2021 - https://github.com/aamit2267/Gimbal-w-Arduino/
+// Author - Amit Agarwal
+// Give credit if you are copying the code.
+
 #include "I2Cdev.h"
 #include "MPU6050_6Axis_MotionApps20.h"
 #include "MPU6050.h"
