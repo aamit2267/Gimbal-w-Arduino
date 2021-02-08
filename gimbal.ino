@@ -2,6 +2,7 @@
 // Author - Amit Agarwal
 // Give credit if you are copying the code.
 
+// add Dependencies
 #include "I2Cdev.h"
 #include "MPU6050_6Axis_MotionApps20.h"
 #include "MPU6050.h"
@@ -9,20 +10,19 @@
 #include "Wire.h"
 #endif
 #include <Servo.h>
+// Dependencies Complete
 
-MPU6050 mpu;
+MPU6050 mpu; // store MPU6050 in mpu variable
 
-Servo servo0;
-Servo servo1;
-Servo servo2;
+int i = 0;
+Servo servo0; // Servo number 0.
+Servo servo1; // Servo number 1.
+Servo servo2; // Servo number 2.
 float correct;
-int j = 0;
 
 #define OUTPUT_READABLE_YAWPITCHROLL
 
 #define INTERRUPT_PIN 2  // use pin 2 on Arduino-uno
-
-bool blinkState = false;
 
 bool dmpReady = false; 
 uint8_t mpuIntStatus;   
@@ -30,15 +30,11 @@ uint8_t devStatus;
 uint16_t packetSize;    // expected DMP size (default = 42 bytes)
 uint16_t fifoCount;     
 uint8_t fifoBuffer[64]; 
-
+bool blinkState = false;
 
 Quaternion q;           
-VectorInt16 aa;         
-VectorInt16 aaReal;    
-VectorInt16 aaWorld;   
-VectorFloat gravity;   
-float euler[3];        
-float ypr[3];       
+VectorFloat gravity;        
+float tr[3];       
 
 
 uint8_t teapotPacket[14] = { '$', 0x02, 0, 0, 0, 0, 0, 0, 0, 0, 0x00, 0x00, '\r', '\n' };
@@ -117,28 +113,28 @@ void loop() {
 #ifdef OUTPUT_READABLE_YAWPITCHROLL
     mpu.dmpGetQuaternion(&q, fifoBuffer);
     mpu.dmpGetGravity(&gravity, &q);
-    mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
+    mpu.dmpGetYawPitchRoll(tr, &q, &gravity);
 
-    ypr[0] = ypr[0] * 180 / M_PI;
-    ypr[1] = ypr[1] * 180 / M_PI;
-    ypr[2] = ypr[2] * 180 / M_PI;
+    tr[0] = tr[0] * 180 / M_PI;
+    tr[1] = tr[1] * 180 / M_PI;
+    tr[2] = tr[2] * 180 / M_PI;
     
-    if (j <= 300) {
-      correct = ypr[0]; // Yaw starts at random value, so we capture last value after 300 readings
-      j++;
+    if (i <= 300) {
+      correct = tr[0];
+      i++;
     }
     
     else {
-      ypr[0] = ypr[0] - correct;
+      tr[0] = tr[0] - correct;
       
-      int servo0Value = map(ypr[0], -90, 90, 0, 180);
-      int servo1Value = map(ypr[1], -90, 90, 0, 180);
-      int servo2Value = map(ypr[2], -90, 90, 180, 0);
+      int servo0Val = map(tr[0], -90, 90, 0, 180);
+      int servo1Val = map(tr[1], -90, 90, 0, 180);
+      int servo2Val = map(tr[2], -90, 90, 180, 0);
       
       
-      servo0.write(servo0Value);
-      servo1.write(servo1Value);
-      servo2.write(servo2Value);
+      servo0.write(servo0Val);
+      servo1.write(servo1Val);
+      servo2.write(servo2Val);
     }
 #endif
   }
