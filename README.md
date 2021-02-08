@@ -17,5 +17,9 @@ It consists of 3 MG996R servo motors for the 3-axis control, and a base on which
 ### Circuit Diagram
 ![](https://github.com/aamit2267/Gimbal-w-Arduino/blob/main/circuit.png) 
 
+### Tutorial Used By Me
+This tutorial is used by me whenever i got stucked. 
+[![DIY GIMBAL](https://yt-embed.herokuapp.com/embed?v=UxABxSADZ6U)](https://youtu.be/UxABxSADZ6U "DIY Gimbal")
+
 ### Demo Video
 [![DEMO](https://yt-embed.herokuapp.com/embed?v=w1LTCHEpGig)](https://www.youtube.com/watch?v=w1LTCHEpGig "Demo")
